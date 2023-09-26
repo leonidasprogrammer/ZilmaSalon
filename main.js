@@ -1,10 +1,12 @@
 /* Abre e fecha o menu quando clicar no icone: hamburguer e x*/
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
+const focus = document.querySelector('.focus')
 
 for (const element of toggle) {
   element.addEventListener('click', function () {
     nav.classList.toggle('show')
+    focus.classList.toggle('focused')
   })
 }
 
@@ -14,8 +16,44 @@ const links = document.querySelectorAll('nav ul li a')
 for (const link of links) {
   link.addEventListener('click', function () {
     nav.classList.remove('show')
+    if (window.innerWidth <= 1199) {
+      focus.classList.toggle('focused')
+    }
   })
 }
+
+// retira menu e efeto embasado
+window.addEventListener('resize', function () {
+  if (window.innerWidth >= 1200) {
+    nav.classList.remove('show')
+    focus.classList.remove('focused')
+  }
+})
+
+//embasar fundo
+
+/*for (const focu of focus) {
+  focu.addEventListener('click', function () {
+    focus.classList.add('focused')
+  })
+}*/
+
+/*function ofuscarFocus() {
+  if (window.scrollY <= navHeight) {
+    focus.classList.add('focused')
+    //alert('teste focus')
+  } else {
+    focus.classList.remove('focused')
+  }
+}*/
+
+//const focus = document.querySelector('.focus')
+
+/*for (const element of main) {
+  element.addEventListener('click', function () {
+    focus.classList.main('show')
+  })
+}*/
 
 /* mudar o header da pagina quando der scroll*/
 
@@ -23,8 +61,9 @@ const header = document.querySelector('#header')
 const navHeight = header.offsetHeight
 
 function changeHeaderWhenScroll() {
-  if (window.scrollY >= navHeight) {
+  if (window.scrollY >= navHeight && window.scrollY <= 3150) {
     //scroll é maior que a altura do header
+
     header.classList.add('scroll')
   } else {
     // menor que a altura do header
@@ -52,7 +91,7 @@ const swiper = new Swiper('.swiper-container', {
 const scrollReveal = ScrollReveal({
   origin: 'top',
   distance: '30px',
-  duration: 700,
+  duration: 1400,
   reset: true
 })
 
@@ -100,6 +139,9 @@ function activateMenuAtCurrentSection() {
         .querySelector('nav ul li a[href*=' + sectionId + ']')
         .classList.remove('active')
     }
+    /*sections.addEventListener('mouseover', function () {
+      nav.classList.remove('active')
+    })*/
   }
 }
 
@@ -108,4 +150,5 @@ window.addEventListener('scroll', function () {
   changeHeaderWhenScroll()
   backToTop()
   activateMenuAtCurrentSection()
+  ofuscarFocus()
 })
