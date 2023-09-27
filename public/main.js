@@ -2,8 +2,19 @@
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
 const focus = document.querySelector('.focus')
+const arrow = document.querySelectorAll('main .go-to-about')
+
+const back = document.querySelector('.go-to-about')
+const backtop = document.querySelector('.back-to-top')
 
 for (const element of toggle) {
+  element.addEventListener('click', function () {
+    nav.classList.toggle('show')
+    focus.classList.toggle('focused')
+  })
+}
+
+for (const element of arrow) {
   element.addEventListener('click', function () {
     nav.classList.toggle('show')
     focus.classList.toggle('focused')
@@ -27,6 +38,11 @@ window.addEventListener('resize', function () {
   if (window.innerWidth >= 1200) {
     nav.classList.remove('show')
     focus.classList.remove('focused')
+    back.classList.add('off')
+    backtop.classList.remove('on')
+  } else {
+    back.classList.remove('off')
+    backtop.classList.add('on')
   }
 })
 
