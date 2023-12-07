@@ -3,9 +3,21 @@ const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
 const focus = document.querySelector('.focus')
 const arrow = document.querySelectorAll('main .go-to-about')
+const load = document.querySelector('body .load')
 
 const back = document.querySelector('.go-to-about')
 const backtop = document.querySelector('.back-to-top')
+
+function preLoad() {
+  load.classList.add('hidden')
+  const elemento = document.querySelector('#header')
+  elemento.id = 'heade'
+}
+setTimeout(preLoad, 3000)
+
+/*setTimeout(function(){
+  document.querySelector('.load').classList.add('visivel');
+}, 3 * 1000);*/
 
 for (const element of toggle) {
   element.addEventListener('click', function () {
@@ -38,11 +50,11 @@ window.addEventListener('resize', function () {
   if (window.innerWidth >= 1200) {
     nav.classList.remove('show')
     focus.classList.remove('focused')
-    back.classList.add('off')
+    //back.classList.toggle('off')
     backtop.classList.remove('on')
   } else {
-    back.classList.remove('off')
-    backtop.classList.add('on')
+    //back.classList.toggle('off')
+    //backtop.classList.add('on')
   }
 })
 
@@ -74,10 +86,10 @@ window.addEventListener('resize', function () {
 /* mudar o header da pagina quando der scroll*/
 
 const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
+const navHome = home.offsetHeight
 
 function changeHeaderWhenScroll() {
-  if (window.scrollY >= navHeight && window.scrollY <= 3150) {
+  if (window.scrollY >= navHome && window.scrollY <= 3150) {
     //scroll é maior que a altura do header
 
     header.classList.add('scroll')
